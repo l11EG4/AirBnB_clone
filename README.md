@@ -3,8 +3,6 @@
 
 <h1 align="center"> AirBnB Clone Project README</h1>
 
-  <h2>Project Name: AirBnB_clone</h2>
-
    <h2>Team Members:</h2>
     <ul>
         <li>Laila Tabourit</li>
@@ -27,7 +25,7 @@
    <h2>How to Start the Command Interpreter:</h2>
     <p>To start the command interpreter, follow these steps:</p>
     <ol>
-        <li>Clone the repository: <code>$ git clone https://github.com/yourusername/AirBnB_clone.git</code></li>
+        <li>Clone the repository: <code>$ git clone https://github.com/l11EG4/AirBnB_clone.git</code></li>
         <li>Change directory to the project folder: <code>$ cd AirBnB_clone</code></li>
         <li>Run the command interpreter: <code>$ ./console.py</code></li>
     </ol>
