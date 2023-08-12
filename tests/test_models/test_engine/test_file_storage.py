@@ -69,7 +69,7 @@ class TestFileStorage(unittest.TestCase):
         melissa.name = "Melissa"
         m_storage.new(melissa)
         key = melissa.__class__.__name__ + "." + str(melissa.id)
-        #print(instances_dic[key])
+        # print(instances_dic[key])
         self.assertIsNotNone(instances_dic[key])
 
     def test_reload(self):
