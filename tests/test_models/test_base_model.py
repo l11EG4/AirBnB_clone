@@ -33,9 +33,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(str(self.cls_base.id), cls_base_dict['id'])
 
     def test_strCls(self):
-        cls = cls_base.__class__.__name__
-        dicCls = cls_base.__dict__
-        ex_str = "[{}] ({}) {}".format(self.cls, self.cls_base.id, self.dicCls)
+        clsname = self.cls_base.__class__.__name__
+        clsdict = self.cls_base.__dict__
+        ex_str = "[{}] ({}) {}".format(clsname, self.cls_base.id, clsdict)
         self.assertEqual(str(self.cls_base), ex_str)
 
 
