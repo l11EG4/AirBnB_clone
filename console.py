@@ -36,6 +36,7 @@ class HBNBCommand(cmd.Cmd):
                 print(new_inst.id)
             except NameError:
                 print("** class doesn't exist **")
+
     def do_show(self, arg):
         """Prints the string representation of an instance."""
         ar = arg.split()
@@ -79,7 +80,7 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         print("** no instance found **")
             except IndexError:
-                 print("** instance id missing **")
+                print("** instance id missing **")
 
     def do_all(self, arg):
         """Prints all string representation of all instances."""
