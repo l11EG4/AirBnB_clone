@@ -141,5 +141,6 @@ class HBNBCommand(cmd.Cmd):
         except IndexError:
             print("** instance id missing **")
 
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
