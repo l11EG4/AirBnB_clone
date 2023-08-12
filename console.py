@@ -126,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
                         else:
                             atr_name = ar[2]
                             atr_value = ar[3]
-                            if hasattr(obj, atr_name):
+                            if atr_name in obj.__dict__:
                                 setattr(obj, atr_name, atr_value)
                                 obj.save()
                             else:
