@@ -107,34 +107,50 @@ class HBNBCommand(cmd.Cmd):
         ar = arg.split()
         if not ar:
             print("** class name missing **")
-        else:
-            try:
-                c_name = ar[0]
-                if c_name not in HBNBCommand.cls:
-                    print("** class doesn't exist **")
-                elif len(ar) < 2:
-                    print("** instance id missing **")
-                else:
-                    obj_key = "{}.{}".format(c_name, ar[1])
-                    all_objs = storage.all()
-                    if obj_key in all_objs:
-                        obj = all_objs[obj_key]
-                        if len(ar) < 3:
-                            print("** attribute name missing **")
-                        elif len(ar) < 4:
-                            print("** value missing **")
-                        else:
-                            atr_name = ar[2]
-                            atr_value = ar[3]
-                            if atr_name in obj.__dict__:
-                                setattr(obj, atr_name, atr_value)
-                                obj.save()
-                            else:
-                                print("** attribute doesn't exist **")
-                    else:
-                        print("** no instance found **")
-            except IndexError:
-                print("** instance id missing **")
+            return
+
+        try:
+            c_name = ar[0]
+            if c_name not in HBNBCommand.cls:
+                print("** class doesn't exist **")
+                return
+
+             if len(ar) < 2:
+                 print("** instance id missing **")
+                 return
+
+             obj_key = "{}.{}".format(c_name, ar[1])
+             all_objs = storage.all()
+             if obj_key not in all_objs:
+                 print("** no instance found **")
+                 return
+
+             obj = all_objs[obj_key]
+             if len(ar) < 3:
+                 print("** attribute name missing **")
+                 return
+
+             attr_name = ar[2]
+             if len(ar) < 4:
+                 print("** value missing **")
+                 return
+
+             attr_value = ar[3]
+             if hasattr(obj, attr_name):
+                 attr_type = type(getattr(obj, attr_name))
+                 try:
+                     attr_value = attr_type(attr_value)
+                 except ValueError:
+                     print("** invalid attribute value **")
+                     return
+
+                 setattr(obj, attr_name, attr_value)
+                 obj.save()
+             else:
+                 print("** attribute doesn't exist **")
+
+        except IndexError:
+            print("** instance id missing **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
