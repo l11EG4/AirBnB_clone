@@ -102,5 +102,39 @@ class HBNBCommand(cmd.Cmd):
             except IndexError:
                 print("** class name missing **")
 
+    def do_update(self, arg):
+        """Updates an instance based on the class name and id."""
+        ar = arg.split()
+        if not ar:
+            print("** class name missing **")
+        else:
+            try:
+                c_name = ar[0]
+                if c_name not in HBNBCommand.cls:
+                    print("** class doesn't exist **")
+                elif len(ar) < 2:
+                    print("** instance id missing **")
+                else:
+                    obj_key = "{}.{}".format(c_name, ar[1])
+                    all_objs = storage.all()
+                    if obj_key in all_objs:
+                        obj = all_objs[obj_key]
+                        if len(ar) < 3:
+                            print("** attribute name missing **")
+                        elif len(ar) < 4:
+                            print("** value missing **")
+                        else:
+                            atr_name = ar[2]
+                            atr_value = ar[3]
+                            if hasattr(obj, atr_name):
+                                setattr(obj, atr_name, atr_value)
+                                obj.save()
+                            else:
+                                print("** attribute doesn't exist **")
+                    else:
+                        print("** no instance found **")
+            except IndexError:
+                print("** instance id missing **")
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
