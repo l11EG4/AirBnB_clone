@@ -104,42 +104,29 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id."""
-        ar = arg.split()
-        if not ar:
+        args = arg.split()
+        if len(args) >= 4:
+            key = "{}.{}".format(args[0], args[1])
+            if key in storage.all():
+                obj = storage.all()[key]
+                cast = type(eval(args[3]))
+                arg3 = args[3].strip('"').strip("'")
+                setattr(obj, args[2], cast(arg3))
+                obj.save()
+            else:
+                print("** no instance found **")
+        elif len(args) == 0:
             print("** class name missing **")
-            return
-
-        try:
-            c_name = ar[0]
-            if c_name not in HBNBCommand.cls:
-                print("** class doesn't exist **")
-             if len(ar) < 2:
-                 print("** instance id missing **")
-             obj_key = "{}.{}".format(c_name, ar[1])
-             all_objs = storage.all()
-             if obj_key not in all_objs:
-                 print("** no instance found **")
-             obj = all_objs[obj_key]
-             if len(ar) < 3:
-                 print("** attribute name missing **")
-             attr_name = ar[2]
-             if len(ar) < 4:
-                 print("** value missing **")
-             attr_value = ar[3]
-             if hasattr(obj, attr_name):
-                 attr_type = type(getattr(obj, attr_name))
-                 try:
-                     attr_value = attr_type(attr_value)
-                 except ValueError:
-                     print("** invalid attribute value **")
-
-                 setattr(obj, attr_name, attr_value)
-                 obj.save()
-             else:
-                 print("** attribute doesn't exist **")
-
-        except IndexError:
+        elif args[0] not in HBNBCommand.cls:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
             print("** instance id missing **")
+        elif ("{}.{}".format(args[0], args[1])) not in storage.all():
+            print("** no instance found **")
+        elif len(args) == 2:
+            print("** attribute name missing **")
+        else:
+            print("** value missing **")
 
 
 if __name__ == '__main__':
