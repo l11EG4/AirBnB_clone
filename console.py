@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         print("** no instance found **")
             except IndexError:
-                 print("** Instance id missing **")
+                 print("** instance id missing **")
 
     def do_all(self, arg):
         """Prints all string representation of all instances."""
