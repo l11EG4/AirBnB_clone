@@ -81,5 +81,26 @@ class HBNBCommand(cmd.Cmd):
             except IndexError:
                  print("** Instance id missing **")
 
+    def do_all(self, arg):
+        """Prints all string representation of all instances."""
+        ar = arg.split()
+        all_objs = storage.all()
+        if not ar:
+            print([str(obj) for obj in all_objs.values()])
+        else:
+            try:
+                c_name = ar[0]
+                if c_name not in HBNBCommand.cls:
+                    print("** class doesn't exist **")
+                else:
+                    objs_cls = [
+                        str(obj)
+                        for key, obj in all_objs.items()
+                        if key.startswith(c_name + ".")
+                    ]
+                    print(objs_cls)
+            except IndexError:
+                print("** class name missing **")
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
