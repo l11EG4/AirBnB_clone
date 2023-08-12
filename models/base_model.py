@@ -6,7 +6,7 @@ import models
 
 
 class BaseModel:
-    """ Base class that defines common attributes and methods for others classes."""
+    """ Base class defines common attribute & methods for other classes."""
 
     def __init__(self, *args, **kwargs):
         """ Initialize new BaseModel.
@@ -30,8 +30,8 @@ class BaseModel:
 
     def save(self):
         """
-        Update public instace attribute with updated_at with the current datetime.
-        and save the instance to storage.
+        Update public instace attribute with updated_at with
+        the current datetime and save the instance to storage.
         """
         self.updated_at = datetime.now()
         models.storage.save()
@@ -50,4 +50,5 @@ class BaseModel:
         """
         Returns a string in format :[<class name>] (<self.id>) <self.__dict__>
         """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        cls_name = self.__class__.__name__
+        return "[{}] ({}) {}".format(cls_name, self.id, self.__dict__)

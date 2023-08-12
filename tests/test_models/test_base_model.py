@@ -4,6 +4,7 @@ import unittest
 from models.base_model import BaseModel
 import os
 
+
 class TestBaseModel(unittest.TestCase):
 
     @classmethod
@@ -32,8 +33,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(str(self.cls_base.id), cls_base_dict['id'])
 
     def test_strCls(self):
-        expected_str_cls = "[{}] ({}) {}".format(self.cls_base.__class__.__name__, self.cls_base.id, self.cls_base.__dict__)
-        self.assertEqual(str(self.cls_base), expected_str_cls)
+        cls = cls_base.__class__.__name__
+        dicCls = cls_base.__dict__
+        ex_str = "[{}] ({}) {}".format(self.cls, self.cls_base.id, self.dicCls)
+        self.assertEqual(str(self.cls_base), ex_str)
+
 
 if __name__ == "__main__":
     unittest.main()
