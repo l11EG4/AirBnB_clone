@@ -81,8 +81,5 @@ class HBNBCommand(cmd.Cmd):
             except IndexError:
                  print("** Instance id missing **")
 
-    def do_all(self, arg):
-
-
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
