@@ -10,6 +10,7 @@ class HBNBCommand(cmd.Cmd):
     """ Command interpreter class."""
 
     prompt = "(hbnb) "
+    cls = {"BaseModel", "User", "Place", "City", "Amenity", "Review", "State"}
 
     def do_quit(self, arg):
         """Command quit to exit the program."""
@@ -35,8 +36,27 @@ class HBNBCommand(cmd.Cmd):
                 print(new_inst.id)
             except NameError:
                 print("** class doesn't exist **")
-
-
+    def do_show(self, arg):
+        """Prints the string representation of an instance."""
+        ar = arg.split()
+        if not ar:
+            print("** class name missing **")
+        else:
+            try:
+                c_name = ar[0]
+                if c_name not in HBNBCommand.cls:
+                    print("** class doesn't exist **")
+                elif len(ar) < 2:
+                    print("** instance id missing **")
+                else:
+                    obj_key = "{}.{}".format(c_name, ar[1])
+                    all_objs = storage.all()
+                    if obj_key in all_objs:
+                        print(all_objs[obj_key])
+                    else:
+                        print("** no instance found **")
+            except IndexError:
+                print("** instance id missing **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
