@@ -100,12 +100,16 @@ class HBNBCommand(cmd.Cmd):
                 if c_name not in HBNBCommand.cls:
                     print("** class doesn't exist **")
                 else:
-                    objs_cls = [
-                        str(obj)
-                        for key, obj in all_objs.items()
-                        if key.startswith(c_name + ".")
-                    ]
-                    print(objs_cls)
+                    if hasattr(eval(c_name), "all"):
+                        objs_cls = [str(obj) for obj in eval(c_name).all()]
+                        print(objs_cls)
+                    else:
+                        objs_cls = [
+                            str(obj)
+                            for key, obj in all_objs.items()
+                            if key.startswith(c_name + ".")
+                        ]
+                        print(objs_cls)
             except IndexError:
                 print("** class name missing **")
 
