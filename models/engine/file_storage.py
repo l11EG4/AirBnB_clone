@@ -3,7 +3,11 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
-
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 class FileStorage:
     """ Serialize instances to a JSON file
@@ -38,6 +42,19 @@ class FileStorage:
                 for key, value in obj_dict.items():
                     class_name = value["__class__"]
                     del value["__class__"]
-                    self.new(eval(class_name)(**value))
+                    if class_name == "BaseModel":
+                        self.new(BaseModel(**value))
+                    elif class_name == "User":
+                        self.new(User(**value))
+                    elif class_name == "Place":
+                        self.new(Place(**value))
+                    elif class_name == "State":
+                        self.new(State(**value))
+                    elif class_name == "City":
+                        self.new(City(**value))
+                    elif class_name == "Amenity":
+                        self.new(Amenity(**value))
+                    elif class_name == "Review":
+                        self.new(Review(**value))
         except FileNotFoundError:
             return
