@@ -37,7 +37,7 @@ class TestFileStorage(unittest.TestCase):
     def teardown(self):
         try:
             os.remove("file.json")
-        except:
+        except FeileNotFoundError:
             pass
 
     def test_style_check(self):
