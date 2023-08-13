@@ -154,6 +154,8 @@ class HBNBCommand(cmd.Cmd):
                     count = 0
                     if c_name + ".count()" in ar:
                         count = len([obj for obj in all_objs.values() if type(obj).__name__ == c_name])
+                    else:
+                        count = len([obj for obj in all_objs.values() if type(obj).__name__ == c_name])
                     print(count)
             except IndexError:
                 print("** class name missing **")
