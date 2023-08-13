@@ -142,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
     def do_count(self, arg):
         """Counts the number of instances of a class."""
         ar = arg.split('.')
-        s = storafe.all()
+        s = storage.all()
         if ar[0] in HBNBCommand.cls and ar[1] == "count()":
             count = sum(1 for obj in s.values() if isintance(obj, eval(ar[0])))
             print(count)
