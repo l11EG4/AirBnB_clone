@@ -10,6 +10,7 @@ import unittest
 import pep8
 import json
 import os
+import models
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
