@@ -110,20 +110,24 @@ class HBNBCommand(cmd.Cmd):
             key = "{}.{}".format(args[0], args[1])
             if key in storage.all():
                 obj = storage.all()[key]
-                attribute_name = args[2]
-                new_value = args[3].strip('"').strip("'")
-                if hasattr(obj, attribute_name):
-                    attribute_type = type(getattr(obj, attribute_name))
-                    if attribute_type == int:
-                        new_value = int(new_value)
-                    elif attribute_type == float:
-                        new_value = float(new_value)
-                    setattr(obj, attribute_name, new_value)
-                    obj.save()
-                else:
-                    print("** attribute name doesn't exist **")
+                cast = type(eval(args[3]))
+                arg3 = args[3].strip('"').strip("'")
+                setattr(obj, args[2], cast(arg3))
+                obj.save()
             else:
                 print("** no instance found **")
+        elif len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in HBNBCommand.cls:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        elif ("{}.{}".format(args[0], args[1])) not in storage.all():
+            print("** no instance found **")
+        elif len(args) == 2:
+            print("** attribute name missing **")
+        else:
+            print("** value missing **")
 
 
 if __name__ == '__main__':
