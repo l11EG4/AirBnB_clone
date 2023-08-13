@@ -100,8 +100,8 @@ class HBNBCommand(cmd.Cmd):
                 if c_name not in HBNBCommand.cls:
                     print("** class doesn't exist **")
                 else:
-                    if hasattr(globals()(c_name), "all"):
-                        objs_cls = [str(obj) for obj in globals()(c_name).all]
+                    if hasattr(globals()[c_name], "all"):
+                        objs_cls = [str(obj) for obj in globals()[c_name].all]
                         print(objs_cls)
                     else:
                         objs_cls = [
