@@ -101,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** class doesn't exist **")
                 else:
                     if hasattr(globals()[c_name], "all"):
-                        objs_cls = [str(obj) for obj in globals()[c_name].all]
+                        objs_cls = [str(obj) for obj in globals()[c_name].all()]
                         print(objs_cls)
                     else:
                         objs_cls = [
