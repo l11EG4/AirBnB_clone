@@ -35,14 +35,6 @@ class FileStorage:
         with open(self.__file_path, 'w') as file:
             json.dump(obj_dict, file)
 
-    def count(self, cls=None):
-        """Counts the number of instances of class."""
-        if cls in None:
-            return len(self.__objects)
-        else:
-            count = sum(1 for obj in self.__objects.values() if type(obj).__name__ == cls)
-                return count
-
     def reload(self):
         """ Deserializes the JSON file"""
         try:

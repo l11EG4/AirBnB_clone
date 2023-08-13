@@ -139,6 +139,26 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** value missing **")
 
+    def do_count(self, arg):
+        """Counts the number of instances of a class."""
+        ar = arg.split()
+        all_objs = storage.all()
+        if not ar:
+            print("** class name missing **")
+        else:
+            try:
+                c_name = ar[0]
+                if c_name not in HBNBCommand.cls:
+                    print("** class doesn't exist **")
+                else:
+                    cmp = 0
+                    for key in all_objs:
+                        if key.split('.')[0] == c_name:
+                            cmp += 1
+                    print(cmp)
+            except IndexError:
+                print("** class name missing **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
