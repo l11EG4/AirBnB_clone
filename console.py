@@ -12,6 +12,7 @@ from models.review import Review
 from models import storage
 from shlex import split
 
+
 class HBNBCommand(cmd.Cmd):
     """ Command interpreter class."""
 
@@ -50,7 +51,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             c_name = ar[0]
-            if c_name not in HBNBCommand.cls:
+            if len(ar) == 0:
+                print("** class name missing **")
+            elif c_name not in HBNBCommand.cls:
                 print("** class doesn't exist **")
             elif len(ar) < 2:
                 print("** instance id missing **")
@@ -139,8 +142,9 @@ class HBNBCommand(cmd.Cmd):
     def do_count(self, arg):
         """Counts the number of instances of a class."""
         ar = arg.split('.')
+        s = storafe.all()
         if ar[0] in HBNBCommand.cls and ar[1] == "count()":
-            count = sum(1 for obj in storage.all().values() if isinstance(obj, eval(ar[0])))
+            count = sum(1 for obj in s.values() if isintance(obj, eval(ar[0])))
             print(count)
 
 
