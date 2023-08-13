@@ -151,11 +151,10 @@ class HBNBCommand(cmd.Cmd):
                 if c_name not in HBNBCommand.cls:
                     print("** class doesn't exist **")
                 else:
-                    cmp = 0
-                    for key in all_objs:
-                        if key.split('.')[0] == c_name:
-                            cmp += 1
-                    print(cmp)
+                    count = 0
+                    if c_name + ".count()" in ar:
+                        count = len([obj for obj in all_objs.values() if type(obj).__name__ == c_name])
+                    print(count)
             except IndexError:
                 print("** class name missing **")
 
