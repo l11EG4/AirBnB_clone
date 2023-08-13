@@ -49,21 +49,18 @@ class HBNBCommand(cmd.Cmd):
         if not ar:
             print("** class name missing **")
         else:
-            try:
-                c_name = ar[0]
-                if c_name not in HBNBCommand.cls:
-                    print("** class doesn't exist **")
-                elif len(ar) < 2:
-                    print("** instance id missing **")
-                else:
-                    obj_key = "{}.{}".format(c_name, ar[1])
-                    all_objs = storage.all()
-                    if obj_key in all_objs:
-                        print(all_objs[obj_key])
-                    else:
-                        print("** no instance found **")
-            except IndexError:
+            c_name = ar[0]
+            if c_name not in HBNBCommand.cls:
+                print("** class doesn't exist **")
+            elif len(ar) < 2:
                 print("** instance id missing **")
+            else:
+                obj_key = "{}.{}".format(c_name, ar[1])
+                all_objs = storage.all()
+                if obj_key in all_objs:
+                    print(all_objs[obj_key])
+                else:
+                    print("** no instance found **")
 
     def do_destroy(self, arg):
         """Deletes an instance and save the change into thr JSON file."""
