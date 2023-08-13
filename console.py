@@ -10,7 +10,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from models import storage
-
+from shlex import split
 
 class HBNBCommand(cmd.Cmd):
     """ Command interpreter class."""
@@ -142,16 +142,9 @@ class HBNBCommand(cmd.Cmd):
     def do_count(self, arg):
         """Counts the number of instances of a class."""
         ar = arg.split('.')
-        s = storage.all()
-        if len(ar) == 2 and ar[1] == "count()":
-            n = ar[0]
-            if c_name in HBNBCommand.cls:
-                count = sum(1 for o in s.values() if type(o).__name__ == n)
-                print(count)
-            else:
-                print("*** class doesn't exist **")
-        else:
-            print("*** Unknown syntax:", arg)
+        if ar[0] in HBNBCommand.cls and ar[1] == "count()":
+            count = sum(1 for obj in storage.all().values() if isinstance(obj, eval(ar[0])))
+            print(count)
 
 
 if __name__ == '__main__':
