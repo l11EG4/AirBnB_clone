@@ -31,10 +31,10 @@ class TestFileStorage(unittest.TestCase):
         cls.rev1.text = "Grade A"
 
     @classmethod
-    def teardown(cls):
+    def tearDownClass(cls):
         del cls.rev1
 
-    def teardown(self):
+    def tearDown(self):
         try:
             os.remove("file.json")
         except FileNotFoundError:
@@ -95,3 +95,6 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn("City." + cy.id, objs)
         self.assertIn("Amenity." + am.id, objs)
         self.assertIn("Review." + rv.id, objs)
+
+if __name__ == '__main__':
+    unittest.main()
