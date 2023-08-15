@@ -72,6 +72,12 @@ class TestFileStorage(unittest.TestCase):
         # print(instances_dic[key])
         self.assertIsNotNone(instances_dic[key])
 
+    def TestFileStorage(self):
+        """create instance of FileStorage."""
+        file_storage = FileStorage()
+        """call the save method"""
+        file_Storage.save()
+
     def test_reload(self):
         bm = BaseModel()
         us = User()
