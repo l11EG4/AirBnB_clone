@@ -33,7 +33,7 @@ class BaseModel:
         Update public instace attribute with updated_at with
         the current datetime and save the instance to storage.
         """
-        self.updated_at = datetime.utcnow()
+        self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
