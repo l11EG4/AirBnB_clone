@@ -115,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id."""
-        args = split(arg)
+        args = arg.split()
         if len(args) >= 4:
             key = "{}.{}".format(args[0], args[1])
             if key in storage.all():
@@ -154,3 +154,5 @@ class HBNBCommand(cmd.Cmd):
                 print(count)
 
 
+if __name__ == "__main__":
+    HBNBCommand().cmdloop()
