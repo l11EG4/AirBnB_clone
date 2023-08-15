@@ -8,6 +8,7 @@ Unittest class:
 import unittest
 import json
 import os
+import pep8
 import models
 from datetime import datetime
 from models.base_model import BaseModel
@@ -39,6 +40,14 @@ class TestFileStorage(unittest.TestCase):
             os.remove("file.json")
         except FileNotFoundError:
             pass
+
+    def test_style_check(self):
+        """
+        Tests pep8 style
+        """
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/engine/file_storage.py'])
+        self.assertLessEqual(p.total_errors, 1, "fix pep8")
 
     def test_all(self):
         """
