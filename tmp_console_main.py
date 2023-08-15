@@ -115,14 +115,12 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id."""
-        args = arg.split()
+        args = split(arg)
         if len(args) >= 4:
             key = "{}.{}".format(args[0], args[1])
             if key in storage.all():
                 obj = storage.all()[key]
-                cast = type(eval(args[3]))
-                arg3 = args[3].strip('"').strip("'")
-                setattr(obj, args[2], cast(arg3))
+                setattr(obj, args[2], args[3])
                 obj.save()
             else:
                 print("** no instance found **")
@@ -136,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         elif len(args) == 2:
             print("** attribute name missing **")
-        else:
+        elif len(args) == 3:
             print("** value missing **")
 
     def do_count(self, arg):
@@ -156,5 +154,3 @@ class HBNBCommand(cmd.Cmd):
                 print(count)
 
 
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
