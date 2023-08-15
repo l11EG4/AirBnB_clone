@@ -32,10 +32,8 @@ class FileStorage:
         obj_dict = {}
 
         for key, value in self.__objects.items():
-            """if type(obj) is dict:
-            obj_dict[key] = value
-            else:"""
             obj_dict[key] = value.to_dict()
+
         with open(self.__file_path, 'w') as file:
             json.dump(obj_dict, file)
 
