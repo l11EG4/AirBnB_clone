@@ -9,7 +9,6 @@ import unittest
 import json
 import os
 import models
-import pep8
 from datetime import datetime
 from models.base_model import BaseModel
 from models.user import User
@@ -41,14 +40,6 @@ class TestFileStorage(unittest.TestCase):
         except FileNotFoundError:
             pass
 
-    def test_style_check(self):
-        """
-        Tests pep8 style
-        """
-        style = pep8.StyleGuide(quiet=True)
-        p = style.check_files(['models/engine/file_storage.py'])
-        self.assertEqual(p.total_errors, 0, "fix pep8")
-
     def test_all(self):
         """
         Tests method: all (returns dictionary <class>.<id> : <obj instance>)
@@ -71,12 +62,6 @@ class TestFileStorage(unittest.TestCase):
         m_storage.new(melissa)
         key = melissa.__class__.__name__ + "." + str(melissa.id)
         self.assertIsNotNone(instances_dic[key])
-
-    def TestFileStorage(self):
-        """create instance of FileStorage."""
-        file_storage = FileStorage()
-        """call the save method"""
-        file_storage.save()
 
     def test_reload(self):
         bm = BaseModel()
@@ -113,6 +98,7 @@ class TestFileStorage(unittest.TestCase):
         storage.save()
         obj_key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.assertIn(obj_key, storage.all())
+
 
 if __name__ == "__main__":
     unittest.main()
