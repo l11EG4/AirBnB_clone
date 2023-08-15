@@ -2,9 +2,8 @@
 # Made by LAILA & MEGA
 """Defines unittests for models/engine/file_storage.py.
 
-Unittest classes:
-    TestFileStorage_instantiation
-    TestFileStorage_methods
+Unittest class:
+    TestFileStorage
 """
 import unittest
 import json
@@ -35,13 +34,10 @@ class TestFileStorage(unittest.TestCase):
     def teardown(cls):
         del cls.rev1
 
-    def test_File_Storage_empty(self):
-        self.assertEqual(type(FileStorage()), FileStorage)
-
     def teardown(self):
         try:
             os.remove("file.json")
-        except FeileNotFoundError:
+        except FileNotFoundError:
             pass
 
     def test_all(self):
