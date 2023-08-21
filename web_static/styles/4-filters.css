@@ -10,6 +10,9 @@ section.filters {
     border: 1px solid #DDDDDD;
     border-radius: 4px;
 }
+section.filters button:hover {
+    opacity: .9;
+}
 section.filters button {
     background-color: #FF5A5F;
     height: 48px;
@@ -20,7 +23,4 @@ section.filters button {
     color: #FFFFFF;
     float: right;
     margin: 11px 30px;
-}
-section.filters button:hover {
-    opacity: .9;
 }
